@@ -12,6 +12,14 @@
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
         <td><%= user.name %></td>
 
+        <td>
+          フォロー数:<%= user.followings.count %>
+        </td>
+
+        <td>
+          フォロワー数:<%= user.followers.count %>
+        </td>
+
         <td colspan="2">
           <% unless current_user == user %>
             <% if current_user.following?(user) %>
@@ -21,6 +29,7 @@
             <% end %>
           <% end %>
         </td>
+
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
