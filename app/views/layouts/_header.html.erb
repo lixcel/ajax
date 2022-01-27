@@ -54,4 +54,10 @@
       </div>
     </div>
   </nav>
+
+
+<% if user_signed_in? %>
+    <%= render 'searches/form' %>
+<% end %>
+
 </header>
