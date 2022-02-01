@@ -1,0 +1,5 @@
+
+      <%= form_with model: [book, book_comment], data: {remote: true } do |f| %>
+        <%= f.text_area :comment, :size=>"80x7" , placeholder: "plz comment", id: "text" %><br>
+        <%= f.submit "送信" %>
+      <% end %>
