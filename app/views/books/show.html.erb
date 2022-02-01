@@ -20,9 +20,8 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
 
-
           <!--いいね機能-->
-            <td class="favorite">
+            <td id="favorite_<%= @book.id %>">
               <%= render "favorites/favorite", book: @book %>
             </td>
 
@@ -36,7 +35,7 @@
         </tr>
       </table>
 
-      <table id= "book">
+      <table id="book">
         <%= render "book_comments/comment", book: @books %>
 
       </table>
