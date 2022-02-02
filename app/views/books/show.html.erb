@@ -25,16 +25,30 @@
               <%= render "favorites/favorite", book: @book %>
             </td>
 
+          <td id="count">
+            <%= render "book_comments/count", book: @book %>
+          </td>
+
+          <td id='star-rate<%= @book.id %>')></td>
+
+        <script>
+          $('#star-rate<%= @book.id %>').raty({
+            size : 36,
+            starOff : '<%= asset_path('star-off.png') %>',
+            starOn  : '<%= asset_path('star-on.png') %>',
+            half : false,
+            readOnly: true,
+            score: <%= @book.star %>,
+          });
+        </script>
+
+
 
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
           <% end %>
 
-          <td id="count">
-            <%= render "book_comments/count", book: @book %>
-          </td>
-          
         </tr>
       </table>
 
