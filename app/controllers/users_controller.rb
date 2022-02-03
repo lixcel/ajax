@@ -4,8 +4,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
     @book = Book.new
+
+    if params[:sort_update]
+      @books = @user.books.latest
+    elsif params[:sort_star]
+      @books = @user.books.star
+    else
+      @books = @user.books
+    end
+
   end
 
   def index

@@ -20,10 +20,6 @@ class BooksController < ApplicationController
     end
   end
 
-
-
-
-
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -54,10 +50,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def search_book
+    @books = Book.search(params[:keyword])
+  end
+
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :category)
   end
 
   def baria_user
