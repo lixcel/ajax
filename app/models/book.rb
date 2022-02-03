@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  scope :latest, -> {order(updated_at: :desc)}
+  scope :star, -> {order(star: :desc)}
 
   belongs_to :user
   has_many :favorites, dependent: :destroy
@@ -10,5 +12,21 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  def sort_books(sort)
+    if sort[:sort] == "updated_at_asc"
+      order("updated_at ASC")
+    elsif sort[:sort] == "updated_at_desc"
+      order("updated_at DESC")
+    end
+  end
+
+  scope :sort_list, -> {
+    {
+      "並び替え" => "",
+      "新着順" => "updated_at_asc",
+      "古い順" => "updated_at_desc"
+    }
+  }
 
 end

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 
+
   before_action :baria_user, only: [:edit, :update]
 
   def show
@@ -10,8 +11,18 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
+    if params[:sort_update]
+      @books = Book.latest
+    elsif params[:sort_star]
+      @books = Book.star
+    else
+      @books = Book.all
+    end
   end
+
+
+
+
 
   def create
     @book = Book.new(book_params)
