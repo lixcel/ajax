@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
   get 'search_book' => "books#search_book"
 
-  resources :groups, only: [:new, :create, :destroy, :update, :edit]
+  resources :groups
 
 
 end
