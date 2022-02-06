@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "homes#top"
   get "home/about"=>"homes#about"
   devise_for :users
+
+  # チャット用
+  get 'chat/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
