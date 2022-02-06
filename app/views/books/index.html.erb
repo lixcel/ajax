@@ -23,7 +23,8 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= link_to '新しい順', books_path(sort_update: "true") %> |
-      <%= link_to '評価の高い順', books_path(sort_star: "true") %>
+      <%= link_to '評価の高い順', books_path(sort_star: "true") %> |
+      <%= link_to 'いいねの高い順', books_path(sort_favorite: "true") %>
       <%= render 'index', books: @books, book: @book %>
     </div>
   </div>
