@@ -47,7 +47,7 @@
   <% end %>
 
   <% if current_user.following?(user) && @user.following?(current_user) %>
-    <%= link_to "Chatを始める", chat_path(@user.id), id: "chat" %>
+    <%= link_to "Chatを始める", chat_path(@user.id)%>
   <% end %>
   </div>
 <% end %>

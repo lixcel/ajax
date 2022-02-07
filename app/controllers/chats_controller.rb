@@ -14,27 +14,20 @@ class ChatsController < ApplicationController
     @room = user_rooms.room
   end
 
-    @chats = @room.chats
+    @chats = @room.chats.page(params[:page]).per(6).order(id: "DESC")
     @chat = Chat.new(room_id: @room.id)
   end
 
   def create
-    @chat = Chat.new(chat_params)
-
-    respond_to do |format|
-      if @chat.save
-        format.html { redirect_to @chat }
-        format.js
-      else
-        format.html {render :show }
-      end
-    end
+    @chat = current_user.chats.new(chat_params)
+    @chat.save
+    redirect_to request.referer
   end
 
 private
 
   def chat_params
-    params.require(:chat).permit(:message, :room_id).merge(user_id: current_user.id)
+    params.require(:chat).permit(:message, :room_id)
   end
 
 end
