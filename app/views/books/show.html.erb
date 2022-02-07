@@ -30,6 +30,8 @@
             <%= render "book_comments/count", book: @book %>
           </td>
 
+          <td>閲覧数:<%= @book.impressions_count %></td>
+
           <td id='star-rate<%= @book.id %>')></td>
 
         <script>

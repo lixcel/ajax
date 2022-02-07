@@ -7,14 +7,18 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @newbook =Book.new
     @book_comment = BookComment.new
+    impressionist(@book,nil)
   end
 
   def index
     @book = Book.new
+    @rank_books = Book.order(impressions_count: "DESC") #アクセス数の多い順に並び替えるための記述
     if params[:sort_update]
       @books = Book.latest
     elsif params[:sort_star]
       @books = Book.star
+    elsif params[:sort_impressions]
+      @books = Book.impressions
     else
       to = Time.current.at_end_of_day
       from = (to - 6.day).at_beginning_of_day

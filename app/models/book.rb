@@ -1,6 +1,12 @@
 class Book < ApplicationRecord
+
+  # アクセス数カウント用
+    is_impressionable counter_cache: true
+
+
   scope :latest, -> {order(updated_at: :desc)}
   scope :star, -> {order(star: :desc)}
+  scope :impressions, -> {order(impressions_count: :desc)}
 
   belongs_to :user
   has_many :favorites, dependent: :destroy
